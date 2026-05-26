@@ -3,16 +3,18 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
-const taskRoutes = require('./routes/taskRoutes');
+const ticketRoutes = require('./routes/ticketRoutes');
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+
 app.use(cors());
 app.use(express.json());
 
-// Namespace explicit compliance
-app.use('/bfhl/tasks', taskRoutes);
+app.use('/tickets', ticketRoutes);
 
-const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => app.listen(PORT, () => console.log(`TaskFlow Engine listening on ${PORT}`)))
-  .catch(err => console.error('Database configuration mapping failed:', err));
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch(err => console.error('Database connection error:', err));
