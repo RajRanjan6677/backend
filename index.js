@@ -9,7 +9,7 @@ app.use(express.json());
 
 // Basic Route
 app.get('/', (req, res) => {
-  res.json({ text: "Hello from the Backend Boilerplate!" });
+  res.json({ text: "Hello this is chnaged" });
 });
 
 app.listen(PORT, () => {
